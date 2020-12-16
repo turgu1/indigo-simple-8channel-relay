@@ -12,12 +12,31 @@
 				<Label>Port:</Label>
 			</Field>
 			<Field id="username" type="textfield" defaultValue="admin">
-				<Label>Password:</Label>
+				<Label>Username:</Label>
 			</Field>
 			<Field id="pwd" type="textfield" defaultValue="12345678">
 				<Label>Password:</Label>
 			</Field>
 		</ConfigUI>
+    <Field type="separator" id="simpleSeparator2"/>
+
+    <Field type="button" id="addRelayDevice">
+      <Title>Add Relay</Title>
+      <CallbackMethod>_add_relay</CallbackMethod>
+    </Field>
+    <Field type="button" id="addInputSensor">
+      <Title>Add Input</Title>
+      <CallbackMethod>_add_sensor</CallbackMethod>
+    </Field>
+    <Field type="button" id="removeRelayDevices">
+      <Title>Remove Selected Devices</Title>
+      <CallbackMethod>_remove_devices</CallbackMethod>
+    </Field>
+    <Field id="deleteDeviceWarning" type="label" fontSize="regular" fontColor="darkgray">
+      <Label>Warning: This button is destructive! This will immediately delete devices. Any associated action groups, schedules and control pages will be affected.</Label>
+    </Field>
+    <Field id="removedDevices" type="textfield" hidden="true" />
+    <Field id="createdDevices" type="textfield" hidden="true" />
 	</DeviceFactory>
 
 	<Device type="sensor" id="Sensor">
