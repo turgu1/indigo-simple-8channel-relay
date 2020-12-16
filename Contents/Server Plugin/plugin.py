@@ -1,6 +1,6 @@
 """ Robert's 8 Channel Relay Plugin for Indigo.
-    First Release Date: Jan 16, 2018
-    Author: David Newhall II
+    First Release Date: December 16, 2020
+    Author: Guy Turcotte
     License: GPLv2
 """
 
