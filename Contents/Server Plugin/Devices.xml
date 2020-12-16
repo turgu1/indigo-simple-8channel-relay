@@ -19,7 +19,10 @@
 			</Field>
 		</ConfigUI>
     <Field type="separator" id="simpleSeparator2"/>
-
+    <Field type="list" id="deviceGroupList">
+				<Label>Device Group (8 Max):</Label>
+				<List class="self" method="_get_device_list" filter="allPluginDevices" dynamicReload="true" />
+		</Field>
     <Field type="button" id="addRelayDevice">
       <Title>Add Relay</Title>
       <CallbackMethod>_add_relay</CallbackMethod>
