@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<Devices>
+	<DeviceFactory>
+		<Name>Configure Robert's 8 Channel Relay Board</Name>
+		<ButtonTitle>Save</ButtonTitle>
+		<ConfigUI>
+
+			<Field id="address" type="textfield" defaultValue="192.168.1.166">
+				<Label>Relay IP Address:</Label>
+			</Field>
+			<Field id="port" type="textfield" defaultValue="80" tooltip="If your device runs on a different port it probably does not work with this plugin">
+				<Label>Port:</Label>
+			</Field>
+			<Field id="username" type="textfield" defaultValue="admin">
+				<Label>Password:</Label>
+			</Field>
+			<Field id="pwd" type="textfield" defaultValue="12345678">
+				<Label>Password:</Label>
+			</Field>
+		</ConfigUI>
+	</DeviceFactory>
+
+	<Device type="sensor" id="Sensor">
+		<Name>Input Sensor</Name>
+		<ConfigUI>
+			<Field id="channel" type="menu">
+				<Label>Sensor Input Channel:</Label>
+				<List>
+					<Option value="1">Input 1</Option>
+					<Option value="2">Input 2</Option>
+					<Option value="3">Input 3</Option>
+					<Option value="4">Input 4</Option>
+					<Option value="5">Input 5</Option>
+					<Option value="6">Input 6</Option>
+					<Option value="7">Input 7</Option>
+					<Option value="8">Input 8</Option>
+				</List>
+			</Field>
+			<Field id="logChanges" type="checkbox" defaultValue="true">
+				<Label>Record Changes to Indigo Log</Label>
+			</Field>
+			<Field id="logActions" type="checkbox" defaultValue="true" hidden="true">
+				<Label>Record Actions to Indigo Log</Label>
+			</Field>
+			<Field id="address" type="textfield" hidden="true"><Label>Address:</Label></Field>
+			<Field id="port" type="textfield" hidden="true"><Label>Port:</Label></Field>
+		</ConfigUI>
+	</Device>
+
+	<Device type="relay" id="Relay">
+		<Name>On or Off Relay</Name>
+		<ConfigUI>
+			<Field id="channel" type="menu">
+				<Label>Relay Channel:</Label>
+				<List>
+					<Option value="1">Relay 1</Option>
+					<Option value="2">Relay 2</Option>
+					<Option value="3">Relay 3</Option>
+					<Option value="4">Relay 4</Option>
+					<Option value="5">Relay 5</Option>
+					<Option value="6">Relay 6</Option>
+					<Option value="7">Relay 7</Option>
+					<Option value="8">Relay 8</Option>
+				</List>
+			</Field>
+			<Field type="button" id="resetPulseCount">
+				<Title>Reset Pulse Count</Title>
+				<CallbackMethod>_reset_device_pulse_count</CallbackMethod>
+			</Field>
+			<Field id="logActions" type="checkbox" defaultValue="true">
+				<Label>Record Actions to Indigo Log</Label>
+			</Field>
+			<Field id="logChanges" type="checkbox" defaultValue="true">
+				<Label>Record Changes to Indigo Log</Label>
+			</Field>
+			<Field id="address" type="textfield" hidden="true"><Label>Address:</Label></Field>
+			<Field id="port" type="textfield" hidden="true"><Label>Port:</Label></Field>
+		</ConfigUI>
+		<States>
+			<State id="pulseTimestamp" readonly="YES">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Pulse Time</TriggerLabel>
+				<ControlPageLabel>Last Pulse Time</ControlPageLabel>
+			</State>
+			<State id="pulseCount" readonly="YES">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Pulse Count</TriggerLabel>
+				<ControlPageLabel>Pulse Count</ControlPageLabel>
+			</State>
+		</States>
+	</Device>
+</Devices>
