@@ -261,7 +261,7 @@ class Plugin(indigo.PluginBase):
         timeout_duration = indigo.activePlugin.pluginPrefs.get("timeout", 4) * 60
         try:
             proc = subprocess.Popen(
-              "curl -G --user {}:{} "http://{}:{}/{}".format(
+              "curl -G --user {}:{} http://{}:{}/{}".format(
                   values["username"], 
                   values["pwd", 
                   values["address"], 
