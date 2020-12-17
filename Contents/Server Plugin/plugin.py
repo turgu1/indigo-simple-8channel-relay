@@ -6,7 +6,7 @@
 
 from datetime import datetime
 import indigo
-import subprocess
+import subprocess32
 import json
 
 class Plugin(indigo.PluginBase):
@@ -268,19 +268,19 @@ class Plugin(indigo.PluginBase):
                   values["port"], 
                   cmd)
             #indigo.server.log(u"Relay shell cmd: {}".format(the_cmd))
-            proc = subprocess.Popen(the_cmd,
-              stdout=subprocess.PIPE,
+            proc = subprocess32.Popen(the_cmd,
+              stdout=subprocess32.PIPE,
               shell=True)
-            # result, err = proc.communicate(timeout=int(timeout_duration))
-            result, err = proc.communicate()
+            result, err = proc.communicate(timeout=int(timeout_duration))
+            # result, err = proc.communicate()
             # indigo.server.log(u"Relay shell result: {}".format(result))
             # if err != None:
             #   indigo.server.log(u"Relay Shell launch error: {}".format(err))
             return result
-        # except TimeoutExpired as err:
-        #   proc.kill()
-        #   indigo.server.log(u"Relay Communication Timeout Error: {} ({}:{}/{})"
-        #                     .format(err, values["hostname"], values["port"], timeout_duration))
+        except subprocess32.TimeoutExpired as err:
+          proc.kill()
+          indigo.server.log(u"Relay Communication Timeout Error: {} ({}:{}/{})"
+                            .format(err, values["hostname"], values["port"], timeout_duration))
 
         except Exception as err:
             indigo.server.log(u"Relay Communication Error: {} ({}:{}/{})"
