@@ -26,4 +26,4 @@ You can then install the indigo plugin, downloading the zip file from the releas
 - [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt)
 
 
-<img src="pictures/relay-net-v5.8.JPG" alt="picture" width="800"/>
+<img src="picture/relay-net-v5.8.JPG" alt="picture" width="800"/>
