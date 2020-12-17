@@ -263,7 +263,7 @@ class Plugin(indigo.PluginBase):
             the_cmd = "curl -G --user {}:{} http://{}:{}/{}".format(
                   values["username"], 
                   values["pwd"], 
-                  values["address"], 
+                  values["hostname"], 
                   values["port"], 
                   cmd)
             indigo.server.log(u"Relay shell cmd: {}".format(the_cmd))
