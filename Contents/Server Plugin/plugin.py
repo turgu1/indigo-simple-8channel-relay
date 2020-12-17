@@ -267,21 +267,14 @@ class Plugin(indigo.PluginBase):
                   values["hostname"], 
                   values["port"], 
                   cmd)
-            #indigo.server.log(u"Relay shell cmd: {}".format(the_cmd))
-            # proc = subprocess32.Popen(the_cmd,
-            #   stdout=subprocess32.PIPE,
-            #   shell=True)
+
             result = subprocess32.check_output(the_cmd, shell=True)            
-            # result, err = proc.communicate()
-            # indigo.server.log(u"Relay shell result: {}".format(result))
-            # if err != None:
-            #   indigo.server.log(u"Relay Shell launch error: {}".format(err))
             return result
         except subprocess32.CalledProcessError as err:
-          # proc.kill()
-          indigo.server.log(u"Relay Communication Timeout Error: {} ({}:{}/{})"
+            # proc.kill()
+            indigo.server.log(u"Relay Communication Timeout Error: {} ({}:{}/{})"
                             .format(err, values["hostname"], values["port"], timeout_duration))
-
+            raise
         except Exception as err:
             indigo.server.log(u"Relay Communication Error: {} ({}:{}/{})"
                               .format(err, values["hostname"], values["port"], timeout_duration))
