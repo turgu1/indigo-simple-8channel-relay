@@ -228,7 +228,7 @@ class Plugin(indigo.PluginBase):
         for host, port, username, pwd in set(hosts):
             try:
                 json_data = Plugin.send_cmd(dev.pluginProps, "state.cgi")
-                json_info = json.load(json_data)
+                json_info = json.loads(json_data)
             except Exception as err:
                 dev.setErrorStateOnServer("Error Reading state: {}".format(err))
                 return
