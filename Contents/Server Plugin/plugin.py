@@ -1,4 +1,5 @@
 """ Simple 8 Channel Relay Plugin for Indigo.
+    A Spinoff from David Nendhall's plugin.
     First Release Date: December 17, 2020
     Author: Guy Turcotte
     License: GPLv2
