@@ -278,7 +278,7 @@ class Plugin(indigo.PluginBase):
             #   indigo.server.log(u"Relay Shell launch error: {}".format(err))
             return result
         except subprocess32.CalledProcessError as err:
-          proc.kill()
+          # proc.kill()
           indigo.server.log(u"Relay Communication Timeout Error: {} ({}:{}/{})"
                             .format(err, values["hostname"], values["port"], timeout_duration))
 
