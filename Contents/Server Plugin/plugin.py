@@ -260,16 +260,20 @@ class Plugin(indigo.PluginBase):
         """ Sends a simple command to the relay board. """
         timeout_duration = indigo.activePlugin.pluginPrefs.get("timeout", 4) * 60
         try:
-            proc = subprocess.Popen(
+            the_cmd = 
               "curl -G --user {}:{} http://{}:{}/{}".format(
                   values["username"], 
                   values["pwd"], 
                   values["address"], 
                   values["port"], 
-                  cmd),
+                  cmd)
+            indigo.server.log(u"Relay shell cmd: {}".format(the_cmd))
+            proc = subprocess.Popen(the_cmd,
               stdout=subprocess.PIPE,
+              stderr=subprocess.PIPE,
               shell=True)
             result, err = proc.communicate()
+            indigo.server.log(u"Relay shell result: {}".format(result))
             if err != None:
               indigo.server.log(u"Relay Shell launch error: {}".format(err))
             return result
