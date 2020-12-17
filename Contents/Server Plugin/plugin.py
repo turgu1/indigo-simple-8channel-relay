@@ -263,10 +263,10 @@ class Plugin(indigo.PluginBase):
             proc = subprocess.Popen(
               "curl -G --user {}:{} http://{}:{}/{}".format(
                   values["username"], 
-                  values["pwd", 
+                  values["pwd"], 
                   values["address"], 
                   values["port"], 
-                  cmd), 
+                  cmd),
               stdout=subprocess.PIPE,
               shell=True)
             result, err = proc.communicate()
