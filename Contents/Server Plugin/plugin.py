@@ -271,9 +271,7 @@ class Plugin(indigo.PluginBase):
             # proc = subprocess32.Popen(the_cmd,
             #   stdout=subprocess32.PIPE,
             #   shell=True)
-            result, err = subprocess32.check_call(the_cmd,
-              stdout=subprocess32.PIPE,
-              shell=True)
+            result = subprocess32.check_output(the_cmd, shell=True)            
             # result, err = proc.communicate()
             # indigo.server.log(u"Relay shell result: {}".format(result))
             # if err != None:
