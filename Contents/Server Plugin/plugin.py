@@ -244,9 +244,9 @@ class Plugin(indigo.PluginBase):
                     # Device does not match, carry on.
                     continue
                 if dev.deviceTypeId == "Relay":
-                    state = True if outputs[chan-1] == "1" else False
+                    state = True if outputs[int(chan)-1] == "1" else False
                 elif dev.deviceTypeId == "Sensor":
-                    state = True if inputs[chan-1] == "1" else False
+                    state = True if inputs[int(chan)-1] == "1" else False
                 if dev.pluginProps.get("logChanges", True):
                     if dev.states["onOffState"] != state:
                         reply = "on" if state else "off"
