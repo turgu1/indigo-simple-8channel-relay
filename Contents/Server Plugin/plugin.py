@@ -1,5 +1,5 @@
-""" Robert's 8 Channel Relay Plugin for Indigo.
-    First Release Date: December 16, 2020
+""" Simple 8 Channel Relay Plugin for Indigo.
+    First Release Date: December 17, 2020
     Author: Guy Turcotte
     License: GPLv2
 """
@@ -156,7 +156,7 @@ class Plugin(indigo.PluginBase):
         if len(dev_id_list)-len(values["removedDevices"].split(",")) >= 8:
             return values
         dev = indigo.device.create(indigo.kProtocol.Plugin, deviceTypeId="Sensor")
-        dev.model = u"Robert's 8 Channel Relay Board"
+        dev.model = u"Simple 8 Channel Relay Board"
         dev.subModel = u"Input"
         dev.replaceOnServer()
         values["createdDevices"] += ","+str(dev.id) if values["createdDevices"] != "" else str(dev.id)
@@ -167,7 +167,7 @@ class Plugin(indigo.PluginBase):
         if len(dev_id_list)-len(values["removedDevices"].split(",")) >= 8:
             return values
         dev = indigo.device.create(indigo.kProtocol.Plugin, deviceTypeId="Relay")
-        dev.model = u"Robert's 8 Channel Relay Board"
+        dev.model = u"Simple 8 Channel Relay Board"
         dev.subModel = u"Relay"
         dev.replaceOnServer()
         values["createdDevices"] += ","+str(dev.id) if values["createdDevices"] != "" else str(dev.id)

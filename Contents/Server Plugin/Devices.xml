@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Devices>
 	<DeviceFactory>
-		<Name>Configure Robert's 8 Channel Relay Board</Name>
+		<Name>Configure Simple 8 Channel Relay Board</Name>
 		<ButtonTitle>Save</ButtonTitle>
 		<ConfigUI>
 
