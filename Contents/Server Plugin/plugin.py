@@ -258,21 +258,22 @@ class Plugin(indigo.PluginBase):
     @staticmethod
     def send_cmd(values, cmd):
         """ Sends a simple command to the relay board. """
-        timeout_duration = indigo.activePlugin.pluginPrefs.get("timeout", 4) * 60
+        timeout_duration = indigo.activePlugin.pluginPrefs.get("timeout", 4)
         try:
-            the_cmd = "curl -G --user {}:{} http://{}:{}/{}".format(
+            the_cmd = "curl -G --connect-timeout {} --user {}:{} http://{}:{}/{}".format(
+                  timeout_duration,
                   values["username"], 
                   values["pwd"], 
                   values["hostname"], 
                   values["port"], 
                   cmd)
-            indigo.server.log(u"Relay shell cmd: {}".format(the_cmd))
+            #indigo.server.log(u"Relay shell cmd: {}".format(the_cmd))
             proc = subprocess.Popen(the_cmd,
               stdout=subprocess.PIPE,
               stderr=subprocess.PIPE,
               shell=True)
             result, err = proc.communicate()
-            indigo.server.log(u"Relay shell result: {}".format(result))
+            # indigo.server.log(u"Relay shell result: {}".format(result))
             if err != None:
               indigo.server.log(u"Relay Shell launch error: {}".format(err))
             return result
