@@ -1,6 +1,6 @@
 # Simple 8 Channel Relay Plugin for Indigo
 
-This plugin is using HTTP protocol to access and direct an 8 Channel Relay board RELAY-NET-V5.8. It was built as a spinoff of David Nendhall's plugin effort (see [here](https://github.com/davidnewhall/indigo-8channel-relay)). 
+This plugin is using HTTP protocol to access and direct an 8 Channel Relay board RELAY-NET-V5.8 from IotZone. It was built as a spinoff of David Nendhall's plugin effort (see [here](https://github.com/davidnewhall/indigo-8channel-relay)). 
 
 All sprinkler related code has been removed. A subprocess is used with `curl` to transmit commands to the board. As the documentation for the board is lacking for the other supported protocols (port 1234 and Modbus port 502), this was the only found way to make it works (Many trials are done with Modbus and older port 1234 protocols but nothing worked).
 
@@ -24,3 +24,6 @@ You can then install the indigo plugin, downloading the zip file from the releas
 ## License
 
 - [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt)
+
+
+<img src="pictures/relay-net-v5.8.JPG" alt="picture" width="800"/>
