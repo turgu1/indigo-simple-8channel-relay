@@ -1,4 +1,4 @@
-# Robert's 8 Channel Relay Plugin for Indigo
+# Simple 8 Channel Relay Plugin for Indigo
 
 This plugin is using HTTP protocol to access and direct an 8 Channel Relay board RELAY-NET-V5.8. It was built using David Nendhall plugin effort (see [here](https://github.com/davidnewhall/indigo-8channel-relay)). 
 
