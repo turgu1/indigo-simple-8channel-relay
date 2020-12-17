@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <PluginConfig>
-	<SupportURL>http://github.com/turgu1/indigo-robert-8channel-relay</SupportURL>
+	<SupportURL>http://github.com/turgu1/indigo-robert-8channel-relay.indigoPlugin</SupportURL>
 
   <Field type="menu" id="interval" defaultValue="60">
     <Label>Update Interval (seconds):</Label>

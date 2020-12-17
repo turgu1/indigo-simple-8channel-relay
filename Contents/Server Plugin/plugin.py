@@ -271,7 +271,7 @@ class Plugin(indigo.PluginBase):
             proc = subprocess.Popen(the_cmd,
               stdout=subprocess.PIPE,
               shell=True)
-            result, err = proc.communicate(timeout=timeout_duration)
+            result, err = proc.communicate()
             # indigo.server.log(u"Relay shell result: {}".format(result))
             # if err != None:
             #   indigo.server.log(u"Relay Shell launch error: {}".format(err))

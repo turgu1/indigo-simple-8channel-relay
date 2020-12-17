@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>PluginVersion</key>
-	<string>1.0.13</string>
+	<string>1.0.14</string>
 	<key>ServerApiVersion</key>
 	<string>2.0</string>
 	<key>IwsApiVersion</key>
@@ -18,7 +18,7 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>https://github.com/turgu1/indigo-robert-8channel-relay/</string>
+			<string>https://github.com/turgu1/indigo-robert-8channel-relay.indigoPlugin/</string>
 		</dict>
 	</array>
 </dict>
