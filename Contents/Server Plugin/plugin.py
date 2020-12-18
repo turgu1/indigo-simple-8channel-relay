@@ -1,5 +1,5 @@
 """ Simple 8 Channel Relay Plugin for Indigo.
-    A spinoff, downsized version from David Nendhall's plugin.
+    A spinoff, downsized version from David Newhall's plugin.
     Using HTTP instead of port 1234 for communication with the board.
     First Public Release Date: December 18, 2020
     Author: Guy Turcotte
