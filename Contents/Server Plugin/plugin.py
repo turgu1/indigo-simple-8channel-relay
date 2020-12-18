@@ -277,23 +277,17 @@ class Plugin(indigo.PluginBase):
                   values["hostname"], 
                   values["port"], 
                   cmd)
-
             proc   = subprocess.Popen(the_cmd, shell=True, stdout=subprocess.PIPE)
             data   = proc.communicate()[0]
             result = proc.wait()
             if result != 0:
-                # indigo.server.log(u"Relay Communication Timeout Error: ({}:{}/{})"
-                #             .format(values["hostname"], values["port"], timeout_duration))
-                raise RuntimeError, "Simple 8 Channel Timeout Communication Error: ({}:{}/{})"
-                                    .format(values["hostname"], values["port"], timeout_duration)
-            return data
-            # result = subprocess32.check_output(the_cmd, shell=True)            
-            # return result
-        # except subprocess32.CalledProcessError as err:
-        #     # proc.kill()
-        #     indigo.server.log(u"Relay Communication Timeout Error: {} ({}:{}/{})"
-        #                     .format(err, values["hostname"], values["port"], timeout_duration))
-        #     raise
+                msg = "Simple 8 Channel Timeout Communication Error: ({}:{}/{})".format(
+                    values["hostname"], 
+                    values["port"], 
+                    timeout_duration)
+                raise RuntimeError, msg
+            else:
+                return data
         except Exception as err:
             indigo.server.log(u"Some Exception occured: {}".format(err))
             raise
