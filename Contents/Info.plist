@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>PluginVersion</key>
-	<string>1.0.28</string>
+	<string>1.0.29</string>
 	<key>ServerApiVersion</key>
 	<string>2.0</string>
 	<key>IwsApiVersion</key>
@@ -11,7 +11,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Simple 8 Channel Relay</string>
 	<key>CFBundleIdentifier</key>
-	<string>home.turgu1.indigoplugin.simple-8channel-relay</string>
+	<string>home.turgu1.indigo-simple-8channel-relay</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>CFBundleURLTypes</key>
