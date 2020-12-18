@@ -1,6 +1,7 @@
 """ Simple 8 Channel Relay Plugin for Indigo.
-    A Spinoff from David Nendhall's plugin.
-    First Release Date: December 17, 2020
+    A spinoff, downsized version from David Nendhall's plugin.
+    Using HTTP instead of port 1234 for communication with the board.
+    First Public Release Date: December 18, 2020
     Author: Guy Turcotte
     License: GPLv2
 """
@@ -16,7 +17,6 @@
 from datetime import datetime
 import indigo
 import subprocess
-# import subprocess32
 import json
 
 class Plugin(indigo.PluginBase):
