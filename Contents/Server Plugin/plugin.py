@@ -4,6 +4,8 @@
     First Public Release Date: December 18, 2020
     Author: Guy Turcotte
     License: GPLv2
+
+    New Version 2024.1.0: Now using Python 3 
 """
 
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
@@ -37,7 +39,7 @@ class Plugin(indigo.PluginBase):
         except:
             channel = 0
         prefix = "r" if type_id == "Relay" else "i"
-        values["address"] = u"{} {}{}".format(props.get("hostname", values["address"]), prefix, channel)
+        values["address"] = "{} {}{}".format(props.get("hostname", values["address"]), prefix, channel)
         dev.replacePluginPropsOnServer(props)
         return (True, values)
 
@@ -50,7 +52,7 @@ class Plugin(indigo.PluginBase):
         # Retrieve parameters stored in device 0"s props.
         if dev_id_list:
             dev = indigo.devices[dev_id_list[0]]
-            values["address" ] = dev.pluginProps.get("hostname", u"192.168.1.166")
+            values["address" ] = dev.pluginProps.get("hostname", "192.168.1.166")
             values["port"    ] = dev.pluginProps.get("port",     80)
             values["username"] = dev.pluginProps.get("username", "admin")
             values["pwd"     ] = dev.pluginProps.get("pwd",      "12345678")
@@ -70,7 +72,7 @@ class Plugin(indigo.PluginBase):
                     indigo.device.delete(dev)
                     if did not in values["createdDevices"].split(","):
                         # do not log if the device was added/removed in one shot.
-                        indigo.server.log(u"Deleted Device: {}".format(dev.name))
+                        indigo.server.log("Deleted Device: {}".format(dev.name))
                     dev_id_list.remove(int(did))
         for did in dev_id_list:
             dev = indigo.devices[did]
@@ -81,7 +83,7 @@ class Plugin(indigo.PluginBase):
             props["port"    ] = values.get("port",     props.get("port", "1234"))
             props["username"] = values.get("username", props.get("username", "admin"))
             props["pwd"     ] = values.get("pwd",      props.get("pwd", "12345678"))
-            props["address" ] = u"{} {}{}".format(props["hostname"], prefix, channel)
+            props["address" ] = "{} {}{}".format(props["hostname"], prefix, channel)
             dev.replacePluginPropsOnServer(props)
         self.set_device_states()
         return values
@@ -110,24 +112,24 @@ class Plugin(indigo.PluginBase):
             try:
                 self.send_cmd(dev.pluginProps, "relay.cgi?relayon"+channel+"=on")
             except KeyError:
-                dev.setErrorStateOnServer(u"Relay Channel Missing! Configure Device Settings.")
+                dev.setErrorStateOnServer("Relay Channel Missing! Configure Device Settings.")
             except Exception as err:
-                dev.setErrorStateOnServer(u"Error turning on relay device: {}".format(err))
+                dev.setErrorStateOnServer("Error turning on relay device: {}".format(err))
             else:
                 dev.updateStateOnServer("onOffState", True)
                 if dev.pluginProps.get("logActions", True):
-                    indigo.server.log(u"Sent \"{}\" on".format(dev.name))
+                    indigo.server.log("Sent \"{}\" on".format(dev.name))
         elif action.deviceAction == indigo.kDeviceAction.TurnOff:
             try:
                 self.send_cmd(dev.pluginProps, "relay.cgi?relayoff"+channel+"=off")
             except KeyError:
-                dev.setErrorStateOnServer(u"Relay Channel Missing! Configure Device Settings.")
+                dev.setErrorStateOnServer("Relay Channel Missing! Configure Device Settings.")
             except Exception as err:
-                dev.setErrorStateOnServer(u"Error turning off relay device: {}".format(err))
+                dev.setErrorStateOnServer("Error turning off relay device: {}".format(err))
             else:
                 dev.updateStateOnServer("onOffState", False)
                 if dev.pluginProps.get("logActions", True):
-                    indigo.server.log(u"Sent \"{}\" off".format(dev.name))
+                    indigo.server.log("Sent \"{}\" off".format(dev.name))
         elif action.deviceAction == indigo.kDeviceAction.Toggle:
             command, reply, state = ("relay.cgi?relayon"+channel+"=on", "on", True)
             if dev.states["onOffState"]:
@@ -135,13 +137,13 @@ class Plugin(indigo.PluginBase):
             try:
                 self.send_cmd(dev.pluginProps, command)
             except KeyError:
-                dev.setErrorStateOnServer(u"Relay Channel Missing! Configure Device Settings.")
+                dev.setErrorStateOnServer("Relay Channel Missing! Configure Device Settings.")
             except Exception as err:
                 dev.setErrorStateOnServer("Error toggling relay device: {}".format(err))
             else:
                 dev.updateStateOnServer("onOffState", state)
                 if dev.pluginProps.get("logActions", True):
-                    indigo.server.log(u"Sent \"{}\" {}".format(dev.name, reply))
+                    indigo.server.log("Sent \"{}\" {}".format(dev.name, reply))
 
 
     def _change_factory_device_type(self, values, dev_id_list):
@@ -156,7 +158,7 @@ class Plugin(indigo.PluginBase):
         """ Devices.xml Callback Method to return all sub devices. """
         return_list = list()
         for did in dev_id_list:
-            name = indigo.devices[did].name if did in indigo.devices else u"- device missing -"
+            name = indigo.devices[did].name if did in indigo.devices else "- device missing -"
             if str(did) not in values.get("removedDevices", "").split(","):
                 return_list.append((did, name))
         return return_list
@@ -166,8 +168,8 @@ class Plugin(indigo.PluginBase):
         if len(dev_id_list)-len(values["removedDevices"].split(",")) >= 8:
             return values
         dev = indigo.device.create(indigo.kProtocol.Plugin, deviceTypeId="Sensor")
-        dev.model = u"Simple 8 Channel Relay Board"
-        dev.subModel = u"Input"
+        dev.model = "Simple 8 Channel Relay Board"
+        dev.subModel = "Input"
         dev.replaceOnServer()
         values["createdDevices"] += ","+str(dev.id) if values["createdDevices"] != "" else str(dev.id)
         return values
@@ -177,8 +179,8 @@ class Plugin(indigo.PluginBase):
         if len(dev_id_list)-len(values["removedDevices"].split(",")) >= 8:
             return values
         dev = indigo.device.create(indigo.kProtocol.Plugin, deviceTypeId="Relay")
-        dev.model = u"Simple 8 Channel Relay Board"
-        dev.subModel = u"Relay"
+        dev.model = "Simple 8 Channel Relay Board"
+        dev.subModel = "Relay"
         dev.replaceOnServer()
         values["createdDevices"] += ","+str(dev.id) if values["createdDevices"] != "" else str(dev.id)
         return values
@@ -197,12 +199,12 @@ class Plugin(indigo.PluginBase):
         try:
             self.send_cmd(dev.pluginProps, "relay.cgi?pulse"+channel+"=pulse")
         except KeyError:
-            dev.setErrorStateOnServer(u"Relay Channel Missing! Configure Device Settings.")
+            dev.setErrorStateOnServer("Relay Channel Missing! Configure Device Settings.")
         except Exception as err:
             dev.setErrorStateOnServer("Error Pulsing Relay: {}".format(err))
         else:
             if dev.pluginProps.get("logActions", True):
-                indigo.server.log(u"Sent \"{}\" relay pulse".format(dev.name))
+                indigo.server.log("Sent \"{}\" relay pulse".format(dev.name))
             dev.updateStateOnServer("pulseCount", dev.states.get("pulseCount", 0) + 1)
             dev.updateStateOnServer("pulseTimestamp", datetime.now().strftime("%s"))
             dev.updateStateOnServer("onOffState", False)  # Pulse always turns off.
@@ -260,7 +262,7 @@ class Plugin(indigo.PluginBase):
                 if dev.pluginProps.get("logChanges", True):
                     if dev.states["onOffState"] != state:
                         reply = "on" if state else "off"
-                        indigo.server.log(u"Device \"{}\" turned {}"
+                        indigo.server.log("Device \"{}\" turned {}"
                                           .format(dev.name, reply))
                 dev.updateStateOnServer("onOffState", state)
                 continue
@@ -285,9 +287,9 @@ class Plugin(indigo.PluginBase):
                     values["hostname"], 
                     values["port"], 
                     timeout_duration)
-                raise RuntimeError, msg
+                raise RuntimeError(msg)
             else:
                 return data
         except Exception as err:
-            indigo.server.log(u"Some Exception occured: {}".format(err))
+            indigo.server.log("Some Exception occured: {}".format(err))
             raise
